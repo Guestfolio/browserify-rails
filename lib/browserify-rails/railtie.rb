@@ -22,7 +22,7 @@ module BrowserifyRails
     # until then, disable in staging and production
     config.browserify_rails.use_browserifyinc = !["staging", "production"].include?(Rails.env)
 
-    initializer :setup_browserify do |app|
+    initializer :setup_browserify, group: :assets do |app|
       # Load granular configuration
       filename = File.join(Rails.root, 'config', 'browserify.yml')
       configuration = YAML::load(File.read(filename)) if File.exist? filename
